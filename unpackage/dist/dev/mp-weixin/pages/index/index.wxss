@@ -17,13 +17,15 @@
   content: "\e6cd";
 }
 .dueto-header{
+	cursor: pointer;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
-	font-size: 12px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
 	color: #333333;
 	padding: 0 15px;
 	height: 45rpx;
@@ -53,7 +55,7 @@
 }
 .dueto-content{
 	position: relative;
-	/* border: 1px solid green; */
+	font-size: 14px;
 }
 .dueto-list{
 	position: relative;
@@ -126,6 +128,7 @@
 	background: #C0C0C0;
 }
 .create-dueto{
+	cursor: pointer;
 	position: fixed;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -173,8 +176,9 @@
 	width: 100%;
 	padding-right: 15px;
 	color: #ADD8E6;
+	font-size: 14px;
 }
-.create-button{
+.publish-button{
 	width: 80px;
 	height: 50px;
 	border-radius: 50px;
@@ -192,6 +196,7 @@
 	font-size: 16px;
 	color: #88d4ec;
 	box-shadow: -2px 0px 2px 1px rgba(0,0,0,0.1);
+	cursor: pointer;
 }
 .create-content:after{
 	content: '';
@@ -220,5 +225,23 @@
 	background: #DEEFF5;
 	-webkit-transform: rotate(45deg);
 	        transform: rotate(45deg);
+}
+.default{
+	padding-top: 70px;
+}
+.default-image{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.default-info{
+	text-align: center;
+}
+.default-info_text{
+	font-size: 14px;
+	color: #C0C0C0;
 }
 

@@ -135,7 +135,32 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -173,14 +198,82 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      value: '', //输入框的值
+      list: [],
+      active: false, //输入框是否显示开关
+      activeIndex: 0, //表示当前点击的是谁
+      currentTab: ' 全部' };
 
   },
   onLoad: function onLoad() {
 
   },
-  methods: {} };exports.default = _default;
+  computed: { //动态监听数据变化
+    newData: function newData() {//定义一个新数据源
+      var list = JSON.parse(JSON.stringify(this.list)); //获取源数据
+      var newList = []; //新建一个空数组用来存放需要处理后的数据
+      if (this.activeIndex === 0) {//点击全部tab
+        this.currentTab = '全部'; // header左侧当前标签
+        return list;
+      }
+      if (this.activeIndex === 1) {//点击待办tab
+        //check 为false 时
+        list.forEach(function (item) {
+          if (!item.checked) {
+            newList.push(item);
+          }
+        });
+        this.currentTab = '待办';
+        return newList;
+      }
+      if (this.activeIndex === 2) {//点击已完成tab
+        //check 为true 时
+        list.forEach(function (item) {
+          if (item.checked) {
+            newList.push(item);
+          }
+        });
+        this.currentTab = '已完成';
+        return newList;
+      }
+
+    } },
+
+  methods: {
+    //点击创建按钮弹出输入框
+    create: function create() {
+      this.active = true;
+    },
+    //发布内容
+    publish: function publish() {
+      if (this.value === '') {//禁止发布空内容
+        uni.showToast({
+          title: "请输入内容", //当输入空白内容时提示信息
+          icon: 'none' //不限时提示图标
+        });
+        return; //返回阻止添加空内容待办事项
+      }
+      this.list.unshift(
+      {
+        id: 'id' + new Date().getTime(), //获取唯一id（时间戳）
+        content: this.value, //待办事项为输入框的值
+        checked: false //待办事件是否完成开关
+      });
+      this.value = ''; //清空input 
+      this.active = false; // 收起输入框
+    },
+    // 完成状态
+    finish: function finish(id) {
+      // let index = this.list.findIndex(item => item.id === id) 箭头函数写法
+      var index = this.list.findIndex(function (item) {return item.id === id;});
+      console.log('我被点击了', this.list[index]);
+      this.list[index].checked = !this.list[index].checked; //切换是否完成
+    },
+    tab: function tab(index) {
+      this.activeIndex = index; //那个tab需要高亮
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */
